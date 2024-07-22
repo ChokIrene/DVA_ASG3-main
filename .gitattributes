@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+Lobby.mp4 filter=lfs diff=lfs merge=lfs -text
+Piano[[:space:]]Room.mp4 filter=lfs diff=lfs merge=lfs -text
+Recording[[:space:]]Studio.mp4 filter=lfs diff=lfs merge=lfs -text
+Vocal[[:space:]]lab.mp4 filter=lfs diff=lfs merge=lfs -text
