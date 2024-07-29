@@ -9,11 +9,23 @@ public class CamRotation : MonoBehaviour
 
     void Start()
     {
-        // Hide and lock the cursor to the center of the screen
-        Cursor.lockState = CursorLockMode.Locked;
+        
     }
 
     void Update()
+    {
+        // Rotate the camera based on mouse movement
+        yaw += sensitivity * Input.GetAxis("Mouse X");
+        pitch -= sensitivity * Input.GetAxis("Mouse Y");
+
+        // Clamp the pitch to avoid extreme looking up or down
+        pitch = Mathf.Clamp(pitch, -90f, 90f);
+
+        // Apply rotation to the camera
+        transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+    }
+
+    void StartRotation()
     {
         // Rotate the camera based on mouse movement
         yaw += sensitivity * Input.GetAxis("Mouse X");
