@@ -55,4 +55,14 @@ public class URLButton : MonoBehaviour
     {
         Application.OpenURL("https://seedmusicsingapore.com/lyrics-writing-course/");
     }
+
+    public void About()
+    {
+        Application.OpenURL("https://seedmusicsingapore.com/");
+    }
+
+    public void Contact()
+    {
+        Application.OpenURL("https://seedmusicsingapore.com/contact/");
+    }
 }
