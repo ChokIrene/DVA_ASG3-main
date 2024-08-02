@@ -41,13 +41,18 @@ public class URLButton : MonoBehaviour
         Application.OpenURL("https://seedmusicsingapore.com/pop-piano/#");
     }
 
-    public void tv()
-    {
-        Application.OpenURL("https://www.samsung.com/sg/tvs/uhd-4k-tv/au7002-65-inch-uhd-4k-smart-tv-ua65au7002kxxs/");
-    }
-
     public void VocalLesson()
     {
         Application.OpenURL("https://seedmusicsingapore.com/pop-vocals/");
+    }
+
+    public void GuitarLesson()
+    {
+        Application.OpenURL("https://seedmusicsingapore.com/pop-guitar/");
+    }
+
+    public void LyricsLesson()
+    {
+        Application.OpenURL("https://seedmusicsingapore.com/lyrics-writing-course/");
     }
 }
