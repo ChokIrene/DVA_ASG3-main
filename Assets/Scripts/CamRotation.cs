@@ -3,39 +3,47 @@ using UnityEngine.EventSystems;
 
 public class CamRotation : MonoBehaviour
 {
-    public float sensitivity = 2.0f;  // Sensitivity of mouse movement
-    public float zoomSpeed = 10.0f;   // Speed of zooming in and out
-    public float minZoom = 10.0f;     // Minimum zoom distance
-    public float maxZoom = 100.0f;    // Maximum zoom distance
+    public float moveSpeed = 5.0f; // Adjusted speed of camera movement
+    public float zoomSpeed = 15.0f; // Speed of zooming in and out
+    public float minZoom = 10.0f;   // Minimum zoom distance (field of view)
+    public float maxZoom = 100.0f;  // Maximum zoom distance (field of view)
+    public float rotationSensitivity = 0.4f; // Sensitivity of mouse rotation
 
+    private Camera camera;
     private float yaw = 0.0f;
     private float pitch = 0.0f;
-    private Camera camera;
 
     void Start()
     {
-        camera = GetComponent<Camera>();  // Get the camera component
-        Cursor.visible = false;
+        camera = GetComponent<Camera>(); // Get the camera component
+        // Ensure cursor is always unlocked and visible
+        Cursor.visible = true;
     }
 
     void Update()
     {
-        // Check if the mouse is over a UI element
+        // Mouse input for rotation (only if not over a UI element)
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            // Rotate the camera based on mouse movement
-            yaw += sensitivity * Input.GetAxis("Mouse X");
-            pitch -= sensitivity * Input.GetAxis("Mouse Y");
-
-            // Clamp the pitch to avoid extreme looking up or down
+            yaw += Input.GetAxis("Mouse X") * rotationSensitivity;
+            pitch -= Input.GetAxis("Mouse Y") * rotationSensitivity;
             pitch = Mathf.Clamp(pitch, -90f, 90f);
 
-            // Apply rotation to the camera
             transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
-
-            // Handle zoom functionality
-            float scroll = Input.GetAxis("Mouse ScrollWheel");
-            camera.fieldOfView = Mathf.Clamp(camera.fieldOfView - scroll * zoomSpeed, minZoom, maxZoom);
         }
+
+        // Zoom functionality
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        camera.fieldOfView = Mathf.Clamp(camera.fieldOfView - scroll * zoomSpeed, minZoom, maxZoom);
+
+        // Camera movement using WASD keys and arrow keys
+        float moveX = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        float moveY = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        float moveZ = 0;
+
+        if (Input.GetKey(KeyCode.Q)) moveZ -= moveSpeed * Time.deltaTime; // Move down
+        if (Input.GetKey(KeyCode.E)) moveZ += moveSpeed * Time.deltaTime; // Move up
+
+        transform.Translate(moveX, moveZ, moveY);
     }
 }
