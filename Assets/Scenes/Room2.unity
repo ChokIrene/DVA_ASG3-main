@@ -11534,10 +11534,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f157e5ab79baec41bf682d2b37feb43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 2
+  moveSpeed: 5
   zoomSpeed: 10
   minZoom: 10
   maxZoom: 100
+  rotationSensitivity: 0.4
 --- !u!114 &1437226589
 MonoBehaviour:
   m_ObjectHideFlags: 0
